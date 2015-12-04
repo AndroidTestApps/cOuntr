@@ -1,4 +1,4 @@
-<p style="font-size:16px">c<strong>O<strong>untr</p>
+<h2>c<strong>O</strong>untr</h2>
 
 Android app for habit tracking.
 

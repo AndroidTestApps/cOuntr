@@ -6,10 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
-import com.peter.countr.CountItem;
 import com.peter.countr.CountRow;
-
-import java.util.ArrayList;
 
 public class DecrementButton extends CountButton
 {

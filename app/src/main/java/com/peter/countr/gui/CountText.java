@@ -3,7 +3,6 @@ package com.peter.countr.gui;
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.view.Gravity;
 import android.widget.GridLayout;
 import android.widget.TextView;
 

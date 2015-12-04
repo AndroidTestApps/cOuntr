@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 
 import com.peter.countr.Count;
 import com.peter.countr.CountItem;
+import com.peter.countr.CountListAdapter;
 import com.peter.countr.CountRow;
 
 import java.util.ArrayList;
@@ -58,6 +59,22 @@ public abstract class CountButton
 
         // if no CountRow object found, create a stub and return it.
         return new CountRow(context, new CountItem(""));
+    }
+
+    /**
+     * Notify adapter of data set change.
+     *
+     * @param view
+     */
+    public void redraw (View view)
+    {
+        Count context = (Count) view.getContext();
+
+        CountListAdapter adapter = context.getAdapter();
+
+        adapter.notifyDataSetChanged();
+
+        adapter.notifyDataSetInvalidated();
     }
 
     /**

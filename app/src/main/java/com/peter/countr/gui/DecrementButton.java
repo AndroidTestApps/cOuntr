@@ -32,6 +32,8 @@ public class DecrementButton extends CountButton
                 CountRow row = getCountRowFromButton(view);
 
                 row.decrement();
+
+                redraw(view);
             }
         });
     }

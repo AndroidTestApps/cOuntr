@@ -23,11 +23,13 @@ public class CountData
 
     private void addSampleData()
     {
-        CountItem ci = new CountItem("Glasses of Water", 0, 24);
+        CountItem water = new CountItem("Glasses of Water", 6, 24);
+        CountItem runs = new CountItem(">2km Runs", 1, 2);
+        CountItem cigarettes = new CountItem("Cigarettes", 2, 13);
 
-        CountRow ex = new CountRow(c, ci);
-
-        items.add(ex);
+        items.add(new CountRow(c, water));
+        items.add(new CountRow(c, runs));
+        items.add(new CountRow(c, cigarettes));
     }
 
     /**
@@ -39,7 +41,7 @@ public class CountData
      */
     public void addItem(String title, int dayCount, int weekCount)
     {
-        addSampleData();
+        items.add(new CountRow(c, new CountItem(title, dayCount, weekCount)));
     }
 
     /**

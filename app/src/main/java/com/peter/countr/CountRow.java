@@ -28,7 +28,6 @@ public class CountRow
         lp.height = GridLayout.LayoutParams.WRAP_CONTENT;
         lp.width = GridLayout.LayoutParams.MATCH_PARENT;
         lp.setGravity(Gravity.TOP);
-        lp.setMargins(10,10,10,10);
 
         g.setLayoutParams(lp);
 
@@ -46,7 +45,6 @@ public class CountRow
 
         DecrementButton db = new DecrementButton(context);
         g.addView(db.getButtonInstance());
-
 
         g.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

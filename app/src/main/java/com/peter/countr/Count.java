@@ -9,8 +9,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 
 public class Count extends ActionBarActivity {
     CountData countData;
+    ListView list;
+    CountListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +29,15 @@ public class Count extends ActionBarActivity {
 
         setContentView(R.layout.activity_new_count);
 
-        setTitle("cOuntr");
+        list = (ListView) findViewById(R.id.list);
 
         countData = new CountData(this);
 
-        renderItems();
+        setTitle("cOuntr");
+
+        adapter = new CountListAdapter(countData.getData(), this);
+
+        list.setAdapter(adapter);
     }
 
     @Override
@@ -65,25 +73,13 @@ public class Count extends ActionBarActivity {
     }
 
     /**
-     * Add all CountRow items to the LinearLayout instance
+     * Get the custom ListAdapter instance.
+     *
+     * @return
      */
-    public void renderItems()
+    public CountListAdapter getAdapter()
     {
-        LinearLayout l = (LinearLayout) findViewById(R.id.scrollview);
-
-        ArrayList<CountRow> items = countData.getData();
-
-        for (CountRow c : items) {
-            int gridIndex = l.indexOfChild(c.getGrid());
-
-            if (gridIndex != -1) {
-                l.removeViewAt(gridIndex);
-            }
-        }
-
-        for (CountRow c : items) {
-            l.addView(c.getGrid());
-        }
+        return adapter;
     }
 
     /**
@@ -91,7 +87,7 @@ public class Count extends ActionBarActivity {
      */
     public void addNewCountRow(View view)
     {
-        if (countData.getData().size() > 15) {
+        if (countData.getData().size() > 10) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setPositiveButton((CharSequence) "Cool", new DialogInterface.OnClickListener() {
@@ -111,8 +107,7 @@ public class Count extends ActionBarActivity {
 
         countData.addItem("Another Item", 0, 0);
 
-        renderItems();
-
+        adapter.notifyDataSetChanged();
     }
 
 }

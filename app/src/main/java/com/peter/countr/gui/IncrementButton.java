@@ -27,9 +27,13 @@ public class IncrementButton extends CountButton
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("hfd");
+
                 CountRow row = getCountRowFromButton(view);
 
                 row.increment();
+
+                redraw(view);
             }
         });
     }

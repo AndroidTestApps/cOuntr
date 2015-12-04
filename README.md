@@ -1,4 +1,4 @@
-<span style="font-family:Sans;"><h2 style="float:left;margin:0;">c</h2><h1 2 style="float:left; margin-top:-5px"><strong>O</strong></h1><h2 style="float:left; margin:0">untr</h2></span>
+<span style="font-family:Sans;"><h2>c<strong><font size="6">O</font></strong>untr</h2></span>
 
 Android app for habit tracking.
 
@@ -9,7 +9,7 @@ properly.
     <img src="https://github.com/psedge/cOuntr/blob/master/assets/03-12-15.png" alt="03-12-15"/>
 </p>
 
-<h3> @TODO </h3>
+<h3> # @TODO </h3>
 
 * Add units of measurement (glass / cigarette etc)
 * Implement local storage for offline cOunting.

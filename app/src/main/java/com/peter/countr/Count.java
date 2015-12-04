@@ -1,20 +1,30 @@
 package com.peter.countr;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
 import android.text.Layout;
 import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.peter.countr.create.CreateItem;
 
 import java.util.ArrayList;
 
@@ -49,13 +59,12 @@ public class Count extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent k = new Intent(this, CreateItem.class);
+            startActivity(k);
+
             return true;
         }
 
@@ -84,15 +93,18 @@ public class Count extends ActionBarActivity {
 
     /**
      * Simulate adding a new item.
+     *
+     * @param View
      */
-    public void addNewCountRow(View view)
+    public void showNewItemModal(View view)
     {
-        if (countData.getData().size() > 10) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        // show an error if adding more than 10 items.
+        if (countData.getData().size() > 10) {
             builder.setPositiveButton((CharSequence) "Cool", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User clicked OK button
+                    // close popup.
                 }
             });
 
@@ -105,9 +117,46 @@ public class Count extends ActionBarActivity {
             return;
         }
 
-        countData.addItem("Another Item", 0, 0);
+        // find the user input GridLayout and inflate
+        LayoutInflater li = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final GridLayout g = (GridLayout) li.inflate(R.layout.add_new_entry, new GridLayout(view.getContext()));
+        builder.setView(g);
+        final EditText input = (EditText) findViewById(R.id.thingName);
 
-        adapter.notifyDataSetChanged();
+        // observe key strokes and disable / enable button if there is at least one character.
+        input.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                String itemString = input.getText().toString();
+                Button b = (Button) g.findViewById(R.id.createButton);
+
+                if (itemString.length() > 1) {
+                    b.setClickable(true);
+                } else {
+                    b.setClickable(false);
+                }
+
+                return true;
+            }
+        });
+
+        Button b = (Button) g.findViewById(R.id.createButton);
+
+        // check for the 'Create' button submission.
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemString = input.getText().toString();
+
+                countData.addItem(itemString, 0, 0);
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
 }

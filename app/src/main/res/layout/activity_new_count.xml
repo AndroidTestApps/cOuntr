@@ -23,7 +23,7 @@
         android:text="Add new item..."
         android:id="@+id/button"
         android:clickable="true"
-        android:onClick="addNewCountRow"
+        android:onClick="showNewItemModal"
         android:gravity="center|bottom"
         android:layout_weight="0"/>
 

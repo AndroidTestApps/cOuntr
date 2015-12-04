@@ -1,32 +1,23 @@
 package com.peter.countr;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.InputType;
-import android.text.Layout;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.peter.countr.create.CreateItem;
-
-import java.util.ArrayList;
+import com.peter.countr.settings.Settings;
 
 public class Count extends ActionBarActivity {
     CountData countData;
@@ -62,7 +53,7 @@ public class Count extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Intent k = new Intent(this, CreateItem.class);
+            Intent k = new Intent(this, Settings.class);
             startActivity(k);
 
             return true;
@@ -94,7 +85,7 @@ public class Count extends ActionBarActivity {
     /**
      * Simulate adding a new item.
      *
-     * @param View
+     * @param
      */
     public void showNewItemModal(View view)
     {
@@ -119,44 +110,47 @@ public class Count extends ActionBarActivity {
 
         // find the user input GridLayout and inflate
         LayoutInflater li = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final GridLayout g = (GridLayout) li.inflate(R.layout.add_new_entry, new GridLayout(view.getContext()));
+        final GridLayout g = (GridLayout) li.inflate(R.layout.add_new_entry, null);
+        final EditText input = (EditText) g.getChildAt(1);
         builder.setView(g);
-        final EditText input = (EditText) findViewById(R.id.thingName);
 
         // observe key strokes and disable / enable button if there is at least one character.
         input.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String itemString = input.getText().toString();
-                Button b = (Button) g.findViewById(R.id.createButton);
+            public boolean onKey(View v, int keyCode, KeyEvent event) {String itemString = input.getText().toString();
+                Button b = (Button) g.getChildAt(2);
 
-                if (itemString.length() > 1) {
+                if (itemString.length() > 0) {
                     b.setClickable(true);
+                    b.setBackgroundColor(Color.parseColor("#a1d20d"));
                 } else {
                     b.setClickable(false);
+                    b.setBackgroundColor(Color.parseColor("#91e0420d"));
                 }
 
-                return true;
+                return false;
             }
         });
 
-        Button b = (Button) g.findViewById(R.id.createButton);
+        final AlertDialog dialog = builder.create();
+
+        dialog.show();
 
         // check for the 'Create' button submission.
+        Button b = (Button) g.getChildAt(2);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String itemString = input.getText().toString();
-
+                dialog.hide();
+                input.setText((CharSequence) "");
                 countData.addItem(itemString, 0, 0);
-
                 adapter.notifyDataSetChanged();
             }
         });
 
-        AlertDialog dialog = builder.create();
-
-        dialog.show();
+        b.setClickable(false);
+        b.setBackgroundColor(Color.parseColor("#91e0420d"));
     }
 
 }

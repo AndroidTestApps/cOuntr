@@ -16,7 +16,7 @@ public class CountListAdapter extends ArrayAdapter<CountRow> {
     private Context c;
 
     public CountListAdapter(ArrayList<CountRow> items, Context ctx) {
-        super(ctx, R.layout.count_list, items);
+        super(ctx, R.layout.settings, items);
         this.items = items;
         this.c = ctx;
     }

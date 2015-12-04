@@ -1,25 +1,21 @@
-package com.peter.countr.create;
+package com.peter.countr.settings;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 
-import com.peter.countr.CountData;
-import com.peter.countr.CountListAdapter;
 import com.peter.countr.R;
 
-public class CreateItem extends ActionBarActivity {
+public class Settings extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.count_list);
+        setContentView(R.layout.settings);
+
+        setTitle("cOuntr - Settings");
     }
 
     @Override

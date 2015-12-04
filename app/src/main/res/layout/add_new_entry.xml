@@ -17,8 +17,10 @@
         android:id="@+id/thingName"
         android:inputType="text"
         android:textSize="15sp"
+        android:layout_margin="10dp"
         android:layout_width="fill_parent"
         android:layout_row="1"
+        android:animateLayoutChanges="true"
         />
 
     <Button
@@ -28,6 +30,7 @@
         android:id="@+id/createButton"
         android:clickable="false"
         android:gravity="center|bottom"
-        android:layout_weight="0"/>
+        android:layout_weight="0"
+        android:animateLayoutChanges="true"/>
 
 </GridLayout>

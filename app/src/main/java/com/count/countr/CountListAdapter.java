@@ -1,4 +1,4 @@
-package com.peter.countr;
+package com.count.countr;
 
 import android.content.Context;
 import android.view.View;

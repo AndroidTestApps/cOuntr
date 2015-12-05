@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Countr</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_logout">Logout</string>
+        <string name="app_name">Countr</string>
+        <string name="action_settings">Settings</string>
+        <string name="action_logout">Logout</string>
+        <string name="stats_menu_text">Stats</string>
+        <string name="rename_menu_text">Rename</string>
+        <string name="delete_menu_text">Delete</string>
 </resources>

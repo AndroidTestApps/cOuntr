@@ -1,4 +1,4 @@
-package com.peter.countr;
+package com.count.countr;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ListView;
 
-import com.peter.countr.settings.Settings;
+import com.count.countr.settings.Settings;
 
 public class Count extends ActionBarActivity {
     CountData countData;

@@ -1,4 +1,4 @@
-package com.peter.countr;
+package com.count.countr;
 
 import android.content.Context;
 
@@ -16,9 +16,8 @@ public class CountData
     public CountData(Context context)
     {
         c = context;
-        items = new ArrayList<CountRow>();
+        items = new ArrayList<>();
         addSampleData();
-
     }
 
     private void addSampleData()

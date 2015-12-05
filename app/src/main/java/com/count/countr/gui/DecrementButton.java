@@ -1,4 +1,4 @@
-package com.peter.countr.gui;
+package com.count.countr.gui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
-import com.peter.countr.CountRow;
+import com.count.countr.CountRow;
 
 public class DecrementButton extends CountButton
 {

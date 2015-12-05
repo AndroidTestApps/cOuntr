@@ -1,4 +1,4 @@
-package com.peter.countr.gui;
+package com.count.countr.gui;
 
 import android.content.Context;
 import android.graphics.Typeface;

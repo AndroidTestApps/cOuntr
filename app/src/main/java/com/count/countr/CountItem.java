@@ -1,4 +1,4 @@
-package com.peter.countr;
+package com.count.countr;
 
 /**
  * CountItem class, for holding counts.

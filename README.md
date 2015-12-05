@@ -12,7 +12,7 @@ properly.
 <h3> # @TODO </h3>
 
 * Add units of measurement (glass / cigarette etc)
-* Implement local storage for offline cOunting.
+* Implement local storage for offline cOunting.oid
 * Add actual communication with API for saved results.
 * Add settings screen
 * Implement Stats, Remove, Rename features on long press.

@@ -1,4 +1,4 @@
-package com.peter.countr.gui;
+package com.count.countr.gui;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
-import com.peter.countr.Count;
-import com.peter.countr.CountItem;
-import com.peter.countr.CountListAdapter;
-import com.peter.countr.CountRow;
+import com.count.countr.Count;
+import com.count.countr.CountItem;
+import com.count.countr.CountListAdapter;
+import com.count.countr.CountRow;
 
 import java.util.ArrayList;
 

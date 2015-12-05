@@ -1,4 +1,4 @@
-package com.peter.countr;
+package com.count.countr;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,19 +8,21 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import com.peter.countr.gui.DayText;
-import com.peter.countr.gui.DecrementButton;
-import com.peter.countr.gui.IncrementButton;
-import com.peter.countr.gui.TitleText;
-import com.peter.countr.gui.WeekText;
+import com.count.countr.gui.DayText;
+import com.count.countr.gui.DecrementButton;
+import com.count.countr.gui.IncrementButton;
+import com.count.countr.gui.TitleText;
+import com.count.countr.gui.WeekText;
 
 public class CountRow
 {
     private GridLayout g;
     private CountItem countItem;
+    private Context context;
 
     public CountRow(Context context, CountItem ci)
     {
+        this.context = context;
         setCountItem(ci);
         g = new GridLayout(context);
 
@@ -28,8 +30,13 @@ public class CountRow
         lp.height = GridLayout.LayoutParams.WRAP_CONTENT;
         lp.width = GridLayout.LayoutParams.MATCH_PARENT;
         lp.setGravity(Gravity.TOP);
-
         g.setLayoutParams(lp);
+
+        int padding = R.dimen.activity_grid_padding;
+        g.setPadding(padding,
+                padding,
+                padding,
+                padding);
 
         TitleText tt = new TitleText(context, countItem.getTitleString());
         g.addView(tt.getTextView());
@@ -52,7 +59,12 @@ public class CountRow
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
-                String[] options = {"Stats", "Rename", "Remove"};
+                String[] options = {
+                        CountRow.this.context.getString(R.string.stats_menu_text),
+                        CountRow.this.context.getString(R.string.rename_menu_text),
+                        CountRow.this.context.getString(R.string.delete_menu_text)
+                    };
+
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // The 'which' argument contains the index position

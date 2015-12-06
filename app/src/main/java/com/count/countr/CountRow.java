@@ -59,11 +59,12 @@ public class CountRow
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
-                String[] options = {
-                        CountRow.this.context.getString(R.string.stats_menu_text),
-                        CountRow.this.context.getString(R.string.rename_menu_text),
-                        CountRow.this.context.getString(R.string.delete_menu_text)
-                    };
+//                String[] options = {
+//                        CountRow.this.context.getString(R.string.stats_menu_text),
+//                        CountRow.this.context.getString(R.string.rename_menu_text),
+//                        CountRow.this.context.getString(R.string.delete_menu_text)
+//                    };
+                String[] options = {"Stats", "Rename", "Remove"};
 
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

@@ -28,7 +28,7 @@ public class Count extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_new_count);
+        setContentView(R.layout.activity_countr);
 
         list = (ListView) findViewById(R.id.list);
 

@@ -5,4 +5,7 @@
         <string name="stats_menu_text">Stats</string>
         <string name="rename_menu_text">Rename</string>
         <string name="delete_menu_text">Delete</string>
+        <string name="add_button_text">Add new item&#8230;</string>
+        <string name="add_create_button_text">Create</string>
+        <string name="add_new_text">Name of Thing</string>
 </resources>

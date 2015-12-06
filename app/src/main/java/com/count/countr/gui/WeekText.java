@@ -17,8 +17,8 @@ public class WeekText extends CountText
         lp.columnSpec = GridLayout.spec(0);
         lp.setMargins(0,150,0,0);
         tt.setLayoutParams(lp);
+        tt.setTextSize(14);
 
-        tt.setTextAppearance(c, android.R.style.TextAppearance_Large);
         tt.setAlpha((float) 0.70);
         setText(s);
     }

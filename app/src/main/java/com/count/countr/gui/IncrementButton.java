@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 import com.count.countr.CountRow;
+import com.count.countr.R;
 
 public class IncrementButton extends CountButton
 {
@@ -17,7 +18,7 @@ public class IncrementButton extends CountButton
 
         Button b = this.getButtonInstance();
         setText("+");
-        b.setBackgroundColor(Color.parseColor("#a1d20d"));
+        b.setBackgroundColor(context.getResources().getColor(R.color.button_green));
 
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.setMargins(0, 20, 0, 0);
@@ -27,8 +28,6 @@ public class IncrementButton extends CountButton
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("hfd");
-
                 CountRow row = getCountRowFromButton(view);
 
                 row.increment();

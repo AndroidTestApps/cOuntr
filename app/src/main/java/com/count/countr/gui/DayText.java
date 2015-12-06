@@ -17,8 +17,8 @@ public class DayText extends CountText
         lp.columnSpec = GridLayout.spec(0);
         lp.setMargins(0,100,0,0);
         tt.setLayoutParams(lp);
+        tt.setTextSize(14);
 
-        tt.setTextAppearance(c, android.R.style.TextAppearance_Large);
         tt.setAlpha(1);
         setText(s);
     }

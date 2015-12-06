@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 import com.count.countr.CountRow;
+import com.count.countr.R;
 
 public class DecrementButton extends CountButton
 {
@@ -17,7 +18,7 @@ public class DecrementButton extends CountButton
 
         Button b = this.getButtonInstance();
         setText("-");
-        b.setBackgroundColor(Color.parseColor("#91e0420d"));
+        b.setBackgroundColor(context.getResources().getColor(R.color.button_red));
 
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.setMargins(0, 120, 0, 10);

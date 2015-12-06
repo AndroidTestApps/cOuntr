@@ -1,12 +1,12 @@
 package com.count.countr;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,7 +19,7 @@ import android.widget.ListView;
 
 import com.count.countr.settings.Settings;
 
-public class Count extends ActionBarActivity {
+public class Count extends Activity {
     CountData countData;
     ListView list;
     CountListAdapter adapter;
@@ -55,8 +55,6 @@ public class Count extends ActionBarActivity {
         if (id == R.id.action_settings) {
             Intent k = new Intent(this, Settings.class);
             startActivity(k);
-
-            return true;
         }
 
         return super.onOptionsItemSelected(item);

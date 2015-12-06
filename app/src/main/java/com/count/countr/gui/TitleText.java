@@ -29,7 +29,7 @@ public class TitleText extends CountText
      */
     public void setText(String s)
     {
-        super.setText(s, Typeface.BOLD);
+        super.setText(s, Typeface.NORMAL);
     }
 
 }

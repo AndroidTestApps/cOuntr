@@ -30,13 +30,8 @@ public class CountRow
         lp.height = GridLayout.LayoutParams.WRAP_CONTENT;
         lp.width = GridLayout.LayoutParams.MATCH_PARENT;
         lp.setGravity(Gravity.TOP);
+        lp.setMargins(0,5,0,5);
         g.setLayoutParams(lp);
-
-        int padding = R.dimen.activity_grid_padding;
-        g.setPadding(padding,
-                padding,
-                padding,
-                padding);
 
         TitleText tt = new TitleText(context, countItem.getTitleString());
         g.addView(tt.getTextView());
@@ -59,12 +54,11 @@ public class CountRow
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
-//                String[] options = {
-//                        CountRow.this.context.getString(R.string.stats_menu_text),
-//                        CountRow.this.context.getString(R.string.rename_menu_text),
-//                        CountRow.this.context.getString(R.string.delete_menu_text)
-//                    };
-                String[] options = {"Stats", "Rename", "Remove"};
+                String[] options = {
+                        CountRow.this.context.getString(R.string.stats_menu_text),
+                        CountRow.this.context.getString(R.string.rename_menu_text),
+                        CountRow.this.context.getString(R.string.delete_menu_text)
+                    };
 
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

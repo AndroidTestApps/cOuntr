@@ -19,4 +19,7 @@
         <item name="android:textColorPrimary">@color/White</item>
     </style>
 
+    <style name="Countr.Button" parent="android:style/Widget.Material.Button">
+    </style>
+
 </resources>

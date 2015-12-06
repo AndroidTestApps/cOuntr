@@ -6,7 +6,7 @@ cOuntr allows the user to create trackers for habits or activities, so that they
 properly.
 
 <p align="center">
-    <img src="https://github.com/psedge/cOuntr/blob/master/assets/03-12-15.png" alt="03-12-15"/>
+    <img src="https://github.com/psedge/cOuntr/blob/master/assets/current.png" alt="Latest screenshot"/>
 </p>
 
 <h3> # @TODO </h3>

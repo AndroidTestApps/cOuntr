@@ -15,7 +15,7 @@ public class DayText extends CountText
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.rowSpec = GridLayout.spec(0);
         lp.columnSpec = GridLayout.spec(0);
-        lp.setMargins(0,100,0,0);
+        lp.setMargins(0,90,0,0);
         tt.setLayoutParams(lp);
         tt.setTextSize(20);
 

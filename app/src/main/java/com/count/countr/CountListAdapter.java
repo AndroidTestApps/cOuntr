@@ -13,12 +13,10 @@ import java.util.ArrayList;
 public class CountListAdapter extends ArrayAdapter<CountRow> {
 
     private ArrayList<CountRow> items;
-    private Context context;
 
     public CountListAdapter(ArrayList<CountRow> items, Context context) {
         super(context, R.layout.activity_countr, items);
         this.items = items;
-        this.context = context;
     }
 
     @Override

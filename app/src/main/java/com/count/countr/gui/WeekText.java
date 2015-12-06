@@ -15,7 +15,7 @@ public class WeekText extends CountText
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.rowSpec = GridLayout.spec(0);
         lp.columnSpec = GridLayout.spec(0);
-        lp.setMargins(0,150,0,0);
+        lp.setMargins(0,140,0,0);
         tt.setLayoutParams(lp);
         tt.setTextSize(14);
 

@@ -36,6 +36,7 @@ public abstract class CountButton
         lp.columnSpec = GridLayout.spec(3);
         b.setLayoutParams(lp);
 
+        b.setPadding(20,20,20,20);
         b.setClickable(true);
     }
 

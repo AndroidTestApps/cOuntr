@@ -2,6 +2,7 @@ package com.count.countr.gui;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -18,8 +19,7 @@ public class DecrementButton extends CountButton
 
         Button b = this.getButtonInstance();
         setText("-");
-        b.setBackgroundColor(context.getResources().getColor(R.color.button_red));
-
+        b.getBackground().setColorFilter(context.getResources().getColor(R.color.button_red), PorterDuff.Mode.MULTIPLY);
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.setMargins(0, 120, 0, 10);
         b.setLayoutParams(lp);

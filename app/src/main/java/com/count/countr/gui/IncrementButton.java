@@ -2,6 +2,7 @@ package com.count.countr.gui;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -18,7 +19,7 @@ public class IncrementButton extends CountButton
 
         Button b = this.getButtonInstance();
         setText("+");
-        b.setBackgroundColor(context.getResources().getColor(R.color.button_green));
+        b.getBackground().setColorFilter(context.getResources().getColor(R.color.button_green), PorterDuff.Mode.MULTIPLY);
 
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.setMargins(0, 20, 0, 0);

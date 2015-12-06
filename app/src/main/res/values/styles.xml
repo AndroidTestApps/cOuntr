@@ -1,9 +1,22 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--<item name="android:listViewStyle">@style/ListView</item>-->
+    <style name="Countr" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:actionBarStyle">@style/Countr.ActionBar</item>
+        <item name="android:actionMenuTextColor">@color/White</item>
+        <item name="titleTextStyle">@style/Countr.ActionBar.Text</item>
+        <item name="android:titleTextStyle">@style/Countr.ActionBar.Text</item>
+    </style>
+
+    <style name="Countr.ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:titleTextStyle">@style/Countr.ActionBar.Text</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="Countr.ActionBar.Text" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textColorPrimary">@color/White</item>
     </style>
 
 </resources>

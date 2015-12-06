@@ -31,6 +31,7 @@ public class CountRow
         lp.width = GridLayout.LayoutParams.MATCH_PARENT;
         lp.setGravity(Gravity.TOP);
         lp.setMargins(0,5,0,5);
+        g.setPaddingRelative(30,30,30,30);
         g.setLayoutParams(lp);
 
         TitleText tt = new TitleText(context, countItem.getTitleString());

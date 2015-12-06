@@ -3,6 +3,8 @@
     <color name="light_grey">#f5f5f5</color>
     <color name="button_green">#9ccc65</color>
     <color name="button_red">#ff7043</color>
-    <color name="ColorPrimary">#1e9de7</color>
-    <color name="ColorPrimaryDark">#1877ae</color>
-</resources>
+    <color name="ColorPrimary">#a9d1e9</color>
+    <color name="ColorPrimaryDark">#1c90d4</color>
+<color name="White">#FAFAFA</color>
+<color name="titletextcolor">@color/White</color>
+    </resources>

@@ -52,7 +52,7 @@ public class Count extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Intent k = new Intent(this, Settings.class);
+            Intent k = new Intent(getApplicationContext(), Settings.class);
             startActivity(k);
         }
 
@@ -114,7 +114,9 @@ public class Count extends ActionBarActivity {
         // observe key strokes and disable / enable button if there is at least one character.
         input.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {String itemString = input.getText().toString();
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                String itemString = input.getText().toString();
+
                 Button b = (Button) g.getChildAt(2);
 
                 if (itemString.length() > 0) {

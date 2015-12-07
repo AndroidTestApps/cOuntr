@@ -1,7 +1,6 @@
 package com.count.countr.gui;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +11,6 @@ import com.count.countr.R;
 
 public class IncrementButton extends CountButton
 {
-
     public IncrementButton(Context context)
     {
         super(context);
@@ -37,5 +35,4 @@ public class IncrementButton extends CountButton
             }
         });
     }
-
 }

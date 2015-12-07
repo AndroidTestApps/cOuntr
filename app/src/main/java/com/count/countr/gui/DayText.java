@@ -2,6 +2,7 @@ package com.count.countr.gui;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.animation.Animation;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,12 @@ public class DayText extends CountText
         lp.setMargins(0,90,0,0);
         tt.setLayoutParams(lp);
         tt.setTextSize(20);
+        tt.setAnimation(new Animation() {
+            @Override
+            public void startNow() {
+                super.startNow();
+            }
+        });
 
         tt.setAlpha(1);
         setText(s);

@@ -27,17 +27,15 @@ public abstract class CountButton
     public CountButton(Context context)
     {
         b = new Button(context);
+        b.setPadding(20,50,20,50);
+        b.setClickable(true);
 
         lp = new GridLayout.LayoutParams();
-        lp.setGravity(Gravity.RIGHT);
         lp.width = GridLayout.LayoutParams.WRAP_CONTENT;
         lp.height = GridLayout.LayoutParams.WRAP_CONTENT;
         lp.rowSpec = GridLayout.spec(0);
         lp.columnSpec = GridLayout.spec(3);
         b.setLayoutParams(lp);
-
-        b.setPadding(20,20,20,20);
-        b.setClickable(true);
     }
 
     /**
@@ -72,10 +70,6 @@ public abstract class CountButton
         Count context = (Count) view.getContext();
 
         CountListAdapter adapter = context.getAdapter();
-
-        adapter.notifyDataSetChanged();
-
-        adapter.notifyDataSetInvalidated();
     }
 
     /**

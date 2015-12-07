@@ -18,8 +18,7 @@
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:animateLayoutChanges="true">
+        android:layout_weight="1">
     </ListView>
 
     <Button
@@ -31,7 +30,6 @@
         android:clickable="true"
         android:onClick="showNewItemModal"
         android:gravity="center"
-        android:layout_weight="0"
-        android:animateLayoutChanges="true"/>
+        android:layout_weight="0"/>
 
 </LinearLayout>

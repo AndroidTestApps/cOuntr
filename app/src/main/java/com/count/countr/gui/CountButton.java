@@ -4,15 +4,14 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
 import com.count.countr.Count;
-import com.count.countr.CountItem;
 import com.count.countr.CountListAdapter;
 import com.count.countr.CountRow;
+import com.count.countr.db.ItemDatabase;
 
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public abstract class CountButton
         }
 
         // if no CountRow object found, create a stub and return it.
-        return new CountRow(context, new CountItem(""));
+        return new CountRow(context, new ItemDatabase.CountItem(""));
     }
 
     /**

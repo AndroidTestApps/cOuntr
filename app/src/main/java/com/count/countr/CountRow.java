@@ -49,29 +49,26 @@ public class CountRow
         DecrementButton db = new DecrementButton(context);
         g.addView(db.getButtonInstance());
 
-        g.setOnLongClickListener(new View.OnLongClickListener() {
+        g.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view)
-            {
+            public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
                 String[] options = {
                         CountRow.this.context.getString(R.string.stats_menu_text),
                         CountRow.this.context.getString(R.string.rename_menu_text),
                         CountRow.this.context.getString(R.string.delete_menu_text)
-                    };
+                };
 
                 builder.setItems(options, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
-                            }
-                        });
+                    public void onClick(DialogInterface dialog, int which) {
+                        // The 'which' argument contains the index position
+                        // of the selected item
+                    }
+                });
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
-                return true;
             }
         });
     }

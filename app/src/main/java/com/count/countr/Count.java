@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -111,6 +112,8 @@ public class Count extends ActionBarActivity {
         final EditText input = (EditText) g.getChildAt(1);
         builder.setView(g);
 
+        final AlertDialog dialog = builder.create();
+
         // observe key strokes and disable / enable button if there is at least one character.
         input.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -127,13 +130,19 @@ public class Count extends ActionBarActivity {
                     b.setBackgroundColor(Color.parseColor("#91e0420d"));
                 }
 
+                if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+                    dialog.hide();
+                }
+
                 return false;
             }
         });
 
-        final AlertDialog dialog = builder.create();
-
         dialog.show();
+
+        input.requestFocus();
+
+        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         // check for the 'Create' button submission.
         Button b = (Button) g.getChildAt(2);

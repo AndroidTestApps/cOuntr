@@ -2,6 +2,8 @@ package com.count.countr;
 
 import android.content.Context;
 
+import com.count.countr.db.ItemDatabase;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +20,10 @@ public class CountData
         c = context;
         items = new ArrayList<>();
         addSampleData();
+
+        for (CountItem item : loadFromDatabase(c)) {
+            items.add(new CountRow(c, item));
+        }
     }
 
     private void addSampleData()
@@ -29,6 +35,18 @@ public class CountData
         items.add(new CountRow(c, water));
         items.add(new CountRow(c, runs));
         items.add(new CountRow(c, cigarettes));
+    }
+
+    /**
+     * Return an array of countItem items from the database.
+     *
+     * @return
+     */
+    private ArrayList<CountItem> loadFromDatabase(Context c)
+    {
+        ItemDatabase itemsDb = new ItemDatabase(c);
+
+        return itemsDb.fetchItems();
     }
 
     /**

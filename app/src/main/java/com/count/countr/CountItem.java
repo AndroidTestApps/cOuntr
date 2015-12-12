@@ -1,7 +1,5 @@
 package com.count.countr;
 
-import com.count.countr.db.ItemDatabase;
-
 /**
  * CountItem class, for holding counts.
  */
@@ -11,7 +9,6 @@ public class CountItem {
     private final String weekString = "this week";
 
     private String titleString;
-    private ItemDatabase item;
     private int dayCount;
     private int weekCount;
 

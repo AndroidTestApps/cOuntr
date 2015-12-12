@@ -65,13 +65,20 @@ public class ActivityDatabase extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(true, ACTIVITY_TABLE_NAME, selectionArgs, "", selectionArgs, "","","action_id","");
 
-        while (!cursor.isLast()) {
+        while (cursor.getCount() > 0 && !cursor.isLast()) {
+            if (cursor.isBeforeFirst()) {
+                cursor.moveToNext();
+                continue;
+            }
+
             int id = cursor.getInt(0);
             int itemId = cursor.getInt(1);
             String date = cursor.getString(2);
             String action = cursor.getString(2);
 
             items.add(getCountItemActivityInstance(id, itemId, date, action));
+
+            cursor.moveToNext();
         }
 
         cursor.close();

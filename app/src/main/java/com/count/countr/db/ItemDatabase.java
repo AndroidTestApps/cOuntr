@@ -47,7 +47,8 @@ public class ItemDatabase extends SQLiteOpenHelper {
     {
         return "CREATE TABLE " + ITEMS_TABLE_NAME + "( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name VARCHAR(255)";
+                "name VARCHAR(255)" +
+                ");";
     }
 
     /**
@@ -76,11 +77,18 @@ public class ItemDatabase extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(true, ITEMS_TABLE_NAME, selectionArgs, "", selectionArgs, "","","id","");
 
-        while (!cursor.isLast()) {
-            int id = cursor.getInt(cursor.getPosition());
-            String name = cursor.getString(cursor.getPosition());
+        while (cursor.getCount() > 0 && !cursor.isLast()) {
+            if (cursor.isBeforeFirst()) {
+                cursor.moveToNext();
+                continue;
+            }
+
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
 
             items.add(getCountItemInstance(id, name));
+
+            cursor.moveToNext();
         }
 
         cursor.close();

@@ -84,11 +84,17 @@ public class ItemDatabase extends SQLiteOpenHelper {
         return items;
     }
 
+    /**
+     * Take a SQLite Cursor and return an array of CountItems from it.
+     *
+     * @param cursor
+     * @return
+     */
     private ArrayList<CountItem> getItemsFromCursor(Cursor cursor)
     {
         ArrayList<CountItem> items = new ArrayList<>();
 
-        while (cursor.getCount() > 0 && !cursor.isLast()) {
+        while (cursor.getCount() > 0 && !cursor.isAfterLast()) {
             if (cursor.isBeforeFirst()) {
                 cursor.moveToNext();
                 continue;

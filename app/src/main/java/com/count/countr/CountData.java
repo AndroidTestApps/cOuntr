@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class CountData
 {
-
     private Context c;
     private ArrayList<CountRow> items;
 
@@ -61,5 +60,22 @@ public class CountData
     public ArrayList<CountRow> getData()
     {
         return items;
+    }
+
+    /**
+     * Take a CountItem object and find it's index in the items array.
+     *
+     * @param ci
+     * @return
+     */
+    public int findIndexByItem(CountItem ci)
+    {
+        for (CountRow cr : items) {
+            if (cr.getCountItem().equals(ci)) {
+                return items.indexOf(cr);
+            }
+        }
+
+        return -1;
     }
 }

@@ -16,11 +16,11 @@ import com.count.countr.gui.WeekText;
 
 public class CountRow
 {
-    private GridLayout g;
+    final private GridLayout g;
     private CountItem countItem;
     private Context context;
 
-    public CountRow(Context context, CountItem ci)
+    public CountRow(final Context context, final CountItem ci)
     {
         this.context = context;
         setCountItem(ci);
@@ -51,7 +51,7 @@ public class CountRow
 
         g.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
                 String[] options = {
@@ -62,8 +62,21 @@ public class CountRow
 
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // The 'which' argument contains the index position
-                        // of the selected item
+                        View p = (View) view.getParent();
+                        String name = countItem.getTitleString();
+                        Count context = (Count) view.getContext();
+                        CountData cd = context.getCountData();
+
+                        switch (which) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                cd.getData().remove(cd.findIndexByItem(ci));
+                                context.list.invalidate();
+                                break;
+                        }
                     }
                 });
 
@@ -84,13 +97,23 @@ public class CountRow
     }
 
     /**
+     * A wrapper for returing the CountItem instance.
+     *
+     * @return
+     */
+    public CountItem getCountItem()
+    {
+        return countItem;
+    }
+
+    /**
      * Set the CountItem instance.
      *
      * @param item
      */
     public void setCountItem(CountItem item)
     {
-        countItem = item;
+        this.countItem = item;
     }
 
     /**

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 import com.count.countr.Count;
+import com.count.countr.CountItem;
 import com.count.countr.CountListAdapter;
 import com.count.countr.CountRow;
 import com.count.countr.db.ItemDatabase;
@@ -56,7 +57,7 @@ public abstract class CountButton
         }
 
         // if no CountRow object found, create a stub and return it.
-        return new CountRow(context, new ItemDatabase.CountItem(""));
+        return new CountRow(context, new CountItem(""));
     }
 
     /**

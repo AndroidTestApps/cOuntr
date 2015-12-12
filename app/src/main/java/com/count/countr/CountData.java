@@ -19,22 +19,10 @@ public class CountData
     {
         c = context;
         items = new ArrayList<>();
-        addSampleData();
 
         for (CountItem item : loadFromDatabase(c)) {
             items.add(new CountRow(c, item));
         }
-    }
-
-    private void addSampleData()
-    {
-        CountItem water = new CountItem("Glasses of Water", 6, 24);
-        CountItem runs = new CountItem(">2km Runs", 1, 2);
-        CountItem cigarettes = new CountItem("Cigarettes", 2, 13);
-
-        items.add(new CountRow(c, water));
-        items.add(new CountRow(c, runs));
-        items.add(new CountRow(c, cigarettes));
     }
 
     /**
@@ -58,7 +46,11 @@ public class CountData
      */
     public void addItem(String title, int dayCount, int weekCount)
     {
-        items.add(new CountRow(c, new CountItem(title, dayCount, weekCount)));
+        ItemDatabase itemsDb = new ItemDatabase(c);
+
+        CountItem ci = itemsDb.addItem(title);
+
+        items.add(new CountRow(c, ci));
     }
 
     /**

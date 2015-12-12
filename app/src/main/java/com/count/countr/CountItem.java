@@ -14,7 +14,7 @@ public class CountItem {
 
     public CountItem(String titleString)
     {
-        titleString = titleString;
+        this.titleString = titleString;
         dayCount = 0;
         weekCount = 0;
     }

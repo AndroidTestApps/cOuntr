@@ -1,5 +1,6 @@
 package com.count.countr.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.count.countr.CountItem;
 
+import java.sql.SQLData;
 import java.util.ArrayList;
 
 /**
@@ -69,13 +71,22 @@ public class ItemDatabase extends SQLiteOpenHelper {
      */
     public ArrayList<CountItem> fetchItems()
     {
-        ArrayList<CountItem> items = new ArrayList<>();
-
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] selectionArgs = {};
 
         Cursor cursor = db.query(true, ITEMS_TABLE_NAME, selectionArgs, "", selectionArgs, "","","id","");
+
+        ArrayList<CountItem> items = getItemsFromCursor(cursor);
+
+        cursor.close();
+
+        return items;
+    }
+
+    private ArrayList<CountItem> getItemsFromCursor(Cursor cursor)
+    {
+        ArrayList<CountItem> items = new ArrayList<>();
 
         while (cursor.getCount() > 0 && !cursor.isLast()) {
             if (cursor.isBeforeFirst()) {
@@ -91,8 +102,6 @@ public class ItemDatabase extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
 
-        cursor.close();
-
         return items;
     }
 
@@ -106,8 +115,46 @@ public class ItemDatabase extends SQLiteOpenHelper {
     {
         ActivityDatabase count = new ActivityDatabase(c);
 
+        CountItem ci =  new CountItem(name);
 
-        return new CountItem(name);
+        return ci;
+    }
+
+    /**
+     * Create a new row in tblItems and return it's associated CountItem object.
+     *
+     * @param name
+     * @return
+     */
+    public CountItem addItem(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        int lastInsertId = (int) db.insert(ITEMS_TABLE_NAME, null, values);
+
+        return getItemById(lastInsertId);
+    }
+
+    /**
+     * Find a CountItem object from the db by its ID.
+     *
+     * @param id
+     * @return
+     */
+    private CountItem getItemById(int id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] selectionArgs = {};
+        String[] columns = {};
+
+        Cursor cursor = db.query(true, ITEMS_TABLE_NAME, columns, " id = " + id, selectionArgs, "","","id","");
+
+        ArrayList<CountItem> items = getItemsFromCursor(cursor);
+
+        return items.get(0);
     }
 
 }

@@ -18,7 +18,7 @@ public class DecrementButton extends CountButton
         super(context);
 
         Button b = this.getButtonInstance();
-//        setText("-");
+        setText("-");
         b.getBackground().setColorFilter(context.getResources().getColor(R.color.button_red), PorterDuff.Mode.MULTIPLY);
         GridLayout.LayoutParams lp = getLayoutParams();
         lp.setMargins(0, 200, 0, 10);

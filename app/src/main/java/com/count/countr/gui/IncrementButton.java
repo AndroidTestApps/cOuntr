@@ -19,7 +19,7 @@ public class IncrementButton extends CountButton
         super(context);
 
         Button b = this.getButtonInstance();
-//        setText("+");
+        setText("+");
         b.getBackground().setColorFilter(context.getResources().getColor(R.color.button_green), PorterDuff.Mode.MULTIPLY);
 
         GridLayout.LayoutParams lp = getLayoutParams();

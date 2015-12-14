@@ -10,7 +10,6 @@ import com.count.countr.CountItem;
 import com.count.countr.CountItemActivity;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -55,16 +54,17 @@ public class ActivityDatabase extends SQLiteOpenHelper {
 
     /**
      * Access this database, read rows into CountItem instances, returning an ArrayList of them.
+     * Only select items which relate to a specific CountItem ID.
      *
      * @return
      */
-    public ArrayList<CountItemActivity> fetchItems()
+    public ArrayList<CountItemActivity> fetchItems(int itemId)
     {
         ArrayList<CountItemActivity> items = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] selectionArgs = {};
+        String[] selectionArgs = {"item_id = " + itemId};
 
         Cursor cursor = db.query(true, ACTIVITY_TABLE_NAME, selectionArgs, "", selectionArgs, "","","action_id","");
 
@@ -75,9 +75,8 @@ public class ActivityDatabase extends SQLiteOpenHelper {
             }
 
             int id = cursor.getInt(0);
-            int itemId = cursor.getInt(1);
             long date = cursor.getLong(2);
-            String action = cursor.getString(2);
+            int action = cursor.getInt(2);
 
             items.add(getCountItemActivityInstance(id, itemId, date, action));
 
@@ -89,7 +88,7 @@ public class ActivityDatabase extends SQLiteOpenHelper {
         return items;
     }
 
-    public CountItemActivity getCountItemActivityInstance(int id, int itemId, long date, String action)
+    public CountItemActivity getCountItemActivityInstance(int id, int itemId, long date, int action)
     {
         return new CountItemActivity(id, itemId, date, action);
     }
@@ -99,17 +98,39 @@ public class ActivityDatabase extends SQLiteOpenHelper {
      *
      * @param ci
      */
-    public CountItemActivity increment(CountItem ci)
+    public CountItemActivity newIncrementActivity(CountItem ci)
+    {
+        return changeCount(ci, CountItemActivity.ACTION_INCREMENT);
+    }
+
+    /**
+     * Decrement the provided CountItem object in the tblActivity table
+     *
+     * @param ci
+     * @return
+     */
+    public CountItemActivity newDecrementActivity(CountItem ci)
+    {
+        return changeCount(ci, CountItemActivity.ACTION_DECREMENT);
+    }
+
+    /**
+     * Update the tblActivity table with a new entry to either increment or decrement the counter.
+     * @param ci
+     * @param value
+     * @return
+     */
+    private CountItemActivity changeCount(CountItem ci, int value)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put("item_id", ci.getId());
-        values.put("action", "increment");
+        values.put("action", value);
 
         int newId = (int) db.insert(ACTIVITY_TABLE_NAME, null, values);
 
-        return getCountItemActivityInstance(newId, ci.getId(), System.currentTimeMillis(), "increment");
+        return getCountItemActivityInstance(newId, ci.getId(), System.currentTimeMillis(), value);
     }
 
 }

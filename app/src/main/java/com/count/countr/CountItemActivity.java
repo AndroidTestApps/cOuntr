@@ -1,8 +1,8 @@
 package com.count.countr;
 
 public class CountItemActivity {
-    final static int ACTION_INCREMENT = 1;
-    final static int ACTION_DECREMENT = 1;
+    final public static int ACTION_INCREMENT = 1;
+    final public static int ACTION_DECREMENT = 1;
 
     private int actionId;
     private int itemId;

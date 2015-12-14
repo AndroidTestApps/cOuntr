@@ -1,7 +1,6 @@
 package com.count.countr;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import com.count.countr.db.ItemDatabase;
 

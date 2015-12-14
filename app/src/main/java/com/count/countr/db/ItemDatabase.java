@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.count.countr.CountItem;
+import com.count.countr.CountItemActivity;
 
-import java.sql.SQLData;
 import java.util.ArrayList;
 
 /**
@@ -119,9 +119,13 @@ public class ItemDatabase extends SQLiteOpenHelper {
      */
     private CountItem getCountItemInstance(int id, String name)
     {
-        ActivityDatabase count = new ActivityDatabase(c);
+        ActivityDatabase activityDatabase = new ActivityDatabase(c);
 
         CountItem ci =  new CountItem(id, name);
+
+        for (CountItemActivity cia : activityDatabase.fetchItems(id)) {
+            ci.addActivity(cia);
+        }
 
         return ci;
     }

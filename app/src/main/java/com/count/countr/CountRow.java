@@ -3,7 +3,6 @@ package com.count.countr;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
@@ -123,12 +122,7 @@ public class CountRow
      */
     public void increment()
     {
-        ActivityDatabase ac = new ActivityDatabase(context);
-
-        CountItemActivity cia = ac.increment(countItem);;
-        countItem.addActivity(cia);
-
-        updateViewTexts();
+        changeItemCount(CountItemActivity.ACTION_INCREMENT);
     }
 
     /**
@@ -136,7 +130,27 @@ public class CountRow
      */
     public void decrement()
     {
-        countItem.decrement();
+        changeItemCount(CountItemActivity.ACTION_DECREMENT);
+    }
+
+    /**
+     * Create a new tblActivity row
+     * Add it to the countItem activities array
+     * Update the view texts
+     *
+     * @param value
+     */
+    private void changeItemCount(int value)
+    {
+        ActivityDatabase ac = new ActivityDatabase(context);
+
+        if (value == CountItemActivity.ACTION_INCREMENT) {
+            CountItemActivity cia = ac.newIncrementActivity(countItem);
+            countItem.addActivity(cia);
+        } else {
+            CountItemActivity cia = ac.newDecrementActivity(countItem);
+            countItem.addActivity(cia);
+        }
 
         updateViewTexts();
     }

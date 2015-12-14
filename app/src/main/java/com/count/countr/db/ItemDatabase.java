@@ -50,7 +50,7 @@ public class ItemDatabase extends SQLiteOpenHelper {
         return "CREATE TABLE " + ITEMS_TABLE_NAME + "( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name VARCHAR(255)" +
-                ");";
+                ");" + ActivityDatabase.getCreateString();
     }
 
     /**

@@ -43,13 +43,14 @@ public class ActivityDatabase extends SQLiteOpenHelper {
      *
      * @return
      */
-    public String getCreateString()
+    public static String getCreateString()
     {
         return "CREATE TABLE " + ACTIVITY_TABLE_NAME + "( " +
                 "action_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "item_id INTEGER," +
                 "date DATETIME," +
-                "action VARCHAR(10)";
+                "action VARCHAR(10)" +
+                ");";
     }
 
     /**
@@ -64,9 +65,10 @@ public class ActivityDatabase extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
+        String[] columns = {};
         String[] selectionArgs = {"item_id = " + itemId};
 
-        Cursor cursor = db.query(true, ACTIVITY_TABLE_NAME, selectionArgs, "", selectionArgs, "","","action_id","");
+        Cursor cursor = db.query(true, ACTIVITY_TABLE_NAME, columns, "", selectionArgs, "","","action_id","");
 
         while (cursor.getCount() > 0 && !cursor.isLast()) {
             if (cursor.isBeforeFirst()) {

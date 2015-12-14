@@ -17,15 +17,11 @@ public class CountItem {
     private int weekCount;
     private ArrayList<CountItemActivity> activities;
 
-    public CountItem(String titleString)
-    {
-        this.titleString = titleString;
-        dayCount = 0;
-        weekCount = 0;
-    }
+    public CountItem(String titleString) {}
 
     public CountItem(int id, String titleString)
     {
+        activities = new ArrayList<>();
         this.titleString = titleString;
         this.id = id;
         this.weekCount = 0;

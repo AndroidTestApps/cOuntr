@@ -1,5 +1,8 @@
 package com.count.countr;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 /**
  * CountItem class, for holding counts.
  */
@@ -8,9 +11,11 @@ public class CountItem {
     private final String dayString = "today";
     private final String weekString = "this week";
 
+    private int id;
     private String titleString;
     private int dayCount;
     private int weekCount;
+    private ArrayList<CountItemActivity> activities;
 
     public CountItem(String titleString)
     {
@@ -19,18 +24,21 @@ public class CountItem {
         weekCount = 0;
     }
 
-    public CountItem(String titleString, int dayCount)
+    public CountItem(int id, String titleString)
     {
         this.titleString = titleString;
-        this.dayCount = dayCount;
+        this.id = id;
         this.weekCount = 0;
     }
 
-    public CountItem(String titleString, int dayCount, int weekCount)
+    /**
+     * Return the unique ID
+     *
+     * @return
+     */
+    public int getId()
     {
-        this.titleString = titleString;
-        this.dayCount = dayCount;
-        this.weekCount = weekCount;
+        return id;
     }
 
     /**
@@ -82,55 +90,37 @@ public class CountItem {
     }
 
     /**
-     * Public interface for incrementing counter.
+     * Add a new activity to the item, and recount the current day / week counts.
+     *
+     * @param cia
      */
-    public void increment()
+    public void addActivity(CountItemActivity cia)
     {
-        incrementDayCount();
-        incrementWeekCount();
+        activities.add(cia);
+
+        triggerRecount();
     }
 
     /**
-     * Public interface for incrementing counter.
+     * Use the ArrayList<CountItemActivity> to tally the day / week counts.
      */
-    public void decrement()
+    public void triggerRecount()
     {
-        if (this.dayCount > 0) {
-            decrementDayCount();
-            decrementWeekCount();
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+        for (CountItemActivity cia : activities) {
+            if (cia.getDate() >= c.getTimeInMillis()) {
+                if (cia.getAction() == CountItemActivity.ACTION_INCREMENT) {
+                    dayCount++;
+                    continue;
+                }
+                dayCount--;
+            }
         }
-    }
-
-    /**
-     * Increment the day's counter.
-     */
-    private void incrementDayCount()
-    {
-        this.dayCount += 1;
-    }
-
-    /**
-     * Increment the week's counter.
-     */
-    private void incrementWeekCount()
-    {
-        this.weekCount += 1;
-    }
-
-    /**
-     * Decrement the day's counter.
-     */
-    private void decrementDayCount()
-    {
-        this.dayCount -= 1;
-    }
-
-    /**
-     * Decrement the week's counter.
-     */
-    private void decrementWeekCount()
-    {
-        this.weekCount -= 1;
     }
 
 }

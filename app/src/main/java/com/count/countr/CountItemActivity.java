@@ -1,10 +1,13 @@
 package com.count.countr;
 
 public class CountItemActivity {
+    final static int ACTION_INCREMENT = 1;
+    final static int ACTION_DECREMENT = 1;
+
     private int actionId;
     private int itemId;
-    private String date;
-    private String action;
+    private long date;
+    private int action;
 
     /**
      * @param id
@@ -12,7 +15,7 @@ public class CountItemActivity {
      * @param date
      * @param action
      */
-    public CountItemActivity(int id, int itemId, String date, String action)
+    public CountItemActivity(int id, int itemId, long date, int action)
     {
         actionId = id;
         this.itemId = itemId;
@@ -43,8 +46,13 @@ public class CountItemActivity {
      *
      * @return
      */
-    public String getDate()
+    public long getDate()
     {
         return date;
+    }
+
+    public int getAction()
+    {
+        return action;
     }
 }

@@ -1,13 +1,16 @@
 package com.count.countr.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.count.countr.CountItem;
 import com.count.countr.CountItemActivity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -18,7 +21,7 @@ public class ActivityDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "countr";
     private static final String ACTIVITY_TABLE_NAME = "tblActivity";
 
-    ActivityDatabase(Context context) {
+    public ActivityDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -73,7 +76,7 @@ public class ActivityDatabase extends SQLiteOpenHelper {
 
             int id = cursor.getInt(0);
             int itemId = cursor.getInt(1);
-            String date = cursor.getString(2);
+            long date = cursor.getLong(2);
             String action = cursor.getString(2);
 
             items.add(getCountItemActivityInstance(id, itemId, date, action));
@@ -86,9 +89,27 @@ public class ActivityDatabase extends SQLiteOpenHelper {
         return items;
     }
 
-    public CountItemActivity getCountItemActivityInstance(int id, int itemId, String date, String action)
+    public CountItemActivity getCountItemActivityInstance(int id, int itemId, long date, String action)
     {
         return new CountItemActivity(id, itemId, date, action);
+    }
+
+    /**
+     * Increment the provided CountItem object in the tblActivity table.
+     *
+     * @param ci
+     */
+    public CountItemActivity increment(CountItem ci)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_id", ci.getId());
+        values.put("action", "increment");
+
+        int newId = (int) db.insert(ACTIVITY_TABLE_NAME, null, values);
+
+        return getCountItemActivityInstance(newId, ci.getId(), System.currentTimeMillis(), "increment");
     }
 
 }

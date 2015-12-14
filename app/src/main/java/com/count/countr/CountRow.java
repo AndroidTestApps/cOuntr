@@ -3,11 +3,13 @@ package com.count.countr;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import com.count.countr.db.ActivityDatabase;
 import com.count.countr.gui.DayText;
 import com.count.countr.gui.DecrementButton;
 import com.count.countr.gui.IncrementButton;
@@ -121,7 +123,10 @@ public class CountRow
      */
     public void increment()
     {
-        countItem.increment();
+        ActivityDatabase ac = new ActivityDatabase(context);
+
+        CountItemActivity cia = ac.increment(countItem);;
+        countItem.addActivity(cia);
 
         updateViewTexts();
     }

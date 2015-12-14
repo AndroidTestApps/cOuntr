@@ -121,7 +121,7 @@ public class ItemDatabase extends SQLiteOpenHelper {
     {
         ActivityDatabase count = new ActivityDatabase(c);
 
-        CountItem ci =  new CountItem(name);
+        CountItem ci =  new CountItem(id, name);
 
         return ci;
     }
